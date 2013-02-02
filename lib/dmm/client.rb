@@ -62,7 +62,7 @@ module Dmm
         :timestamp    => Time.now.to_s,
         :site         => 'DMM.co.jp',
       }
-      options[:keyword].encode!("euc-jp") if options[:keyword]
+      options.each_value {|val| val.encode! 'euc-jp' if val.kind_of? String}
       params.merge!(options)
     end
 
