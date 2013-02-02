@@ -18,7 +18,27 @@ Or install it yourself as:
 
 ## Usage
 
+### 商品情報を取得する
+```ruby
+client = Dmm.new(:api_id => 'your_api_id', :affiliate_id => 'your_affiliate_id')
+response = client.item_list(
+  :service => 'digital',
+  :floor   => 'videoa',
+  :hits    => 5,
+  :sort    => 'rank',
+  :keyword => '検索ワード')
 
+response.items each do |item|
+  puts item.title            #=> 商品名
+  puts item.affiliate_url    #=> アフィリエイトURL
+  puts item.sample_image_url #=> サンプル画像URL
+  puts item.price_download   #=> 価格（ダウンロード）
+  puts item.price_stream     #=> 価格（ストリーミング）
+end
+```
+
+参考URL
+https://affiliate.dmm.com/api/reference/r18/all/
 
 ## Contributing
 
