@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Ruby wrapper for DMM Web Service API ver2
 
 ## Contributing
 
