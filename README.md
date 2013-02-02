@@ -1,6 +1,6 @@
 # Dmm
 
-TODO: Write a gem description
+Ruby wrapper for DMM Web Service API ver2
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
 
 ## Contributing
 
