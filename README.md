@@ -21,6 +21,7 @@ Or install it yourself as:
 ### 商品情報を取得する
 ```ruby
 client = Dmm.new(:api_id => 'your_api_id', :affiliate_id => 'your_affiliate_id')
+
 response = client.item_list(
   :service => 'digital',
   :floor   => 'videoa',
@@ -37,7 +38,7 @@ response.items each do |item|
 end
 ```
 
-参考URL
+その他のパラメータや、他に取れそうな情報についてはこちらのサイトを参考にしてください。
 https://affiliate.dmm.com/api/reference/r18/all/
 
 ## Contributing
