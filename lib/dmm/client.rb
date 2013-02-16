@@ -7,7 +7,6 @@ require 'dmm/core_ext/string'
 require 'faraday'
 require 'faraday_middleware'
 require 'faraday/response/raise_dmm_error'
-require 'pp'
 
 module Dmm
   class Client
