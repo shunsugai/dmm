@@ -1,4 +1,5 @@
 require 'rexml/document'
+require 'nokogiri'
 
 class Hash
   class << self

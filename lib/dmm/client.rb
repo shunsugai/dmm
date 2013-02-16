@@ -42,7 +42,8 @@ module Dmm
       response = connection.send(method.to_sym, path, params) do |request|
         request.url(path, params)
       end
-      Hash.from_xml(response.body)
+      # Hash.from_xml(response.body)
+      response.body
     end
 
     def connection
