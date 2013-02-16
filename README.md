@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ### 商品情報を取得する
 ```ruby
+require 'dmm'
+
 client = Dmm.new(:api_id => 'your_api_id', :affiliate_id => 'your_affiliate_id')
 
 response = client.item_list(
