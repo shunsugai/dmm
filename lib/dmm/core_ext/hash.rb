@@ -4,43 +4,34 @@ class Hash
   class << self
     def from_xml(xml)
       result = Nokogiri::XML(xml)
-      return { result.root.name.to_s.to_sym => xml_elem_node_to_hash(result.root) }
-      # xml_elem_node_to_hash(result.root)
+      { result.root.name.to_s.to_sym => xml_elem_to_hash(result.root) }
     end
 
     private
 
-    def xml_elem_node_to_hash(node)
-      if node.element?
-        if !node.children.nil?
-          result_hash = {}
+    def xml_elem_to_hash(node)
+      return node.content.to_s unless node.element?
+      return nil if node.children.nil?
 
-          node.children.each do |child|
-            result = xml_elem_node_to_hash(child)
+      result_hash = {}
 
-            if child.name == "text"
-              if child.next_element.nil? && child.previous_element.nil?
-                return result
-              end
-            elsif result_hash[child.name.to_sym]
-              if result_hash[child.name.to_sym].is_a? Object::Array
-                result_hash[child.name.to_sym] << result
-              else
-                result_hash[child.name.to_sym] = [result_hash[child.name.to_sym]] << result
-              end
-            else
-              result_hash[child.name.to_sym] = result
-            end
+      node.children.each do |child|
+        result = xml_elem_to_hash(child)
+
+        if child.name == "text"
+          return result if child.next_element.nil? && child.previous_element.nil?
+        elsif result_hash[child.name.to_sym]
+          item = result_hash[child.name.to_sym]
+          if item.is_a? Object::Array
+            item << result
+          else
+            item = [item] << result
           end
-          return result_hash
-        elsif !node.attributes.nil?
-          #TODO
         else
-          return nil
+          result_hash[child.name.to_sym] = result
         end
-      else
-        return node.content.to_s
       end
+      result_hash
     end
   end
 end
