@@ -1,23 +1,46 @@
-require 'rexml/document'
 require 'nokogiri'
 
 class Hash
   class << self
     def from_xml(xml)
-      xml_to_hash REXML::Document.new(xml).root
+      result = Nokogiri::XML(xml)
+      return { result.root.name.to_s.to_sym => xml_elem_node_to_hash(result.root) }
+      # xml_elem_node_to_hash(result.root)
     end
 
     private
 
-    def xml_to_hash(node)
-      return { node.name.to_sym => node.text } unless node.has_elements?
-      child = {}
-      node.each_element do |e|
-        child.merge!(xml_to_hash(e)) do |key, old_val, new_val|
-          old_val.kind_of?(Array) ? old_val << new_val : [old_val, new_val]
+    def xml_elem_node_to_hash(node)
+      if node.element?
+        if !node.children.nil?
+          result_hash = {}
+
+          node.children.each do |child|
+            result = xml_elem_node_to_hash(child)
+
+            if child.name == "text"
+              if child.next_element.nil? && child.previous_element.nil?
+                return result
+              end
+            elsif result_hash[child.name.to_sym]
+              if result_hash[child.name.to_sym].is_a? Object::Array
+                result_hash[child.name.to_sym] << result
+              else
+                result_hash[child.name.to_sym] = [result_hash[child.name.to_sym]] << result
+              end
+            else
+              result_hash[child.name.to_sym] = result
+            end
+          end
+          return result_hash
+        elsif !node.attributes.nil?
+          #TODO
+        else
+          return nil
         end
+      else
+        return node.content.to_s
       end
-      { node.name.to_sym => child }
     end
   end
 end

@@ -7,6 +7,7 @@ require 'dmm/core_ext/string'
 require 'faraday'
 require 'faraday_middleware'
 require 'faraday/response/raise_dmm_error'
+require 'pp'
 
 module Dmm
   class Client
@@ -27,7 +28,7 @@ module Dmm
     # @return [Dmm::Response]
     def item_list(options={})
       res = get('/', params(options))
-      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
+      pp res      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
       Dmm::Response.new(res)
     end
 
@@ -42,8 +43,7 @@ module Dmm
       response = connection.send(method.to_sym, path, params) do |request|
         request.url(path, params)
       end
-      # Hash.from_xml(response.body)
-      response.body
+      Hash.from_xml(response.body)
     end
 
     def connection
