@@ -18,16 +18,23 @@ module Dmm
 
     attr_accessor *OPTIONS
 
-    def initialize(args)
+    # Initialize a new Client object
+    #
+    # @param options [Hash]
+    # @return [Dmm::Client]
+    def initialize(options={})
       OPTIONS.each do |id|
-        send("#{id}=", args[id])
+        send("#{id}=", options[id])
       end
     end
 
+    # Returns an Dmm::Response object
+    #
+    # @param options [Hash]
     # @return [Dmm::Response]
     def item_list(options={})
       res = get('/', params(options))
-      pp res      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
+      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
       Dmm::Response.new(res)
     end
 
@@ -45,6 +52,9 @@ module Dmm
       Hash.from_xml(response.body)
     end
 
+    # Returns a Faraday::Connection object
+    #
+    # @return [Faraday::Connection]
     def connection
       @connection ||= Faraday.new(:url => ROOT_URL) do |builder|
         builder.request  :url_encoded
@@ -53,6 +63,10 @@ module Dmm
       end
     end
 
+    # Returns a Hash containing API query parameters
+    #
+    # @param [Hash]
+    # @return [Hash]
     def params(options={})
       params = {
         :api_id       => @api_id,

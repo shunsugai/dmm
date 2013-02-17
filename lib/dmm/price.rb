@@ -4,24 +4,29 @@ module Dmm
   class Price < Dmm::Base
     attr_reader :price
 
+    # Returns minimum price of item
+    #
     # @return [Integer]
     def min_price
       @attrs[:price].to_i
     end
 
-    # @return [Array]
+    # Returns an array of hashes with a type of delivery as key and price as value
+    #
+    # @return [Array<Hash>]
     def deliveries
       return [] unless @attrs[:deliveries]
       @attrs[:deliveries][:delivery]
     end
 
+    # Returns an array containing type of delivery
+    #
     # @return [Array]
     def delivery_types
       @delivery_types ||= deliveries.map { |price| price[:type] }
       @delivery_types
     end
 
-    # ex) item.price_stream #=> 1980
     def method_missing(method)
       if method.to_s =~ /^price_(\w+)$/
         array = deliveries.select{ |hash| hash[:type] == $1 }

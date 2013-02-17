@@ -15,17 +15,24 @@ module Dmm
     alias :url_sp :URLsp
     alias :affiliate_url_sp :affiliateURLsp
 
+    # Returns an Array of sampleimage url
+    #
+    # @return [Array<String>]
     def sampleImageURL
       @attrs[:sampleImageURL][:sample_s][:image]
     end
     alias :sample_image_url :sampleImageURL
 
+    # Returns a Dmm::Price object
+    #
     # @return [Dmm::Price]
     def prices
       @price ||= Dmm::Price.new(@attrs[:prices])
       @price
     end
 
+    # Returns a Dmm::Iteminfo object
+    #
     # @return [Dmm::Iteminfo]
     def iteminfo
       @iteminfo ||= Dmm::Iteminfo.new(@attrs[:iteminfo])
