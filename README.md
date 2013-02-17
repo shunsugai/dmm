@@ -16,6 +16,10 @@ Or install it yourself as:
 
     $ gem install dmm
 
+## ChnageLog
+
+###
+
 ## Usage
 
 ### 商品情報を取得する
