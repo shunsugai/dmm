@@ -27,7 +27,7 @@ module Dmm
     # @return [Dmm::Response]
     def item_list(options={})
       res = get('/', params(options))
-      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
+      pp res      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
       Dmm::Response.new(res)
     end
 
