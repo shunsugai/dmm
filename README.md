@@ -16,6 +16,12 @@ Or install it yourself as:
 
     $ gem install dmm
 
+## ChnageLog
+
+### Version 0.0.2
+
+XMLのパーサーをNokogiriに変更しました。処理が速くなってます。
+
 ## Usage
 
 ### 商品情報を取得する
