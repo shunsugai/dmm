@@ -21,11 +21,10 @@ class Hash
         if child.name == "text"
           return result if child.next_element.nil? && child.previous_element.nil?
         elsif result_hash[child.name.to_sym]
-          item = result_hash[child.name.to_sym]
-          if item.is_a? Object::Array
-            item << result
+          if result_hash[child.name.to_sym].is_a? Object::Array
+            result_hash[child.name.to_sym] << result
           else
-            item = [item] << result
+            result_hash[child.name.to_sym] = [result_hash[child.name.to_sym]] << result
           end
         else
           result_hash[child.name.to_sym] = result
