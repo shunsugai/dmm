@@ -16,7 +16,7 @@ Or install it yourself as:
 
     $ gem install dmm
 
-## ChnageLog
+## ChangeLog
 
 ### Version 0.0.2
 
