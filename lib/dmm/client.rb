@@ -4,12 +4,15 @@ require 'dmm/item'
 require 'dmm/error'
 require 'dmm/core_ext/hash'
 require 'dmm/core_ext/string'
+require 'dmm/api/items'
 require 'faraday'
 require 'faraday_middleware'
 require 'faraday/response/raise_dmm_error'
 
 module Dmm
   class Client
+    include Dmm::API::Items
+
     ROOT_URL = 'http://affiliate-api.dmm.com'
     API_VERSION = '2.00'
     COM = 'DMM.com'
@@ -26,16 +29,6 @@ module Dmm
       OPTIONS.each do |id|
         send("#{id}=", options[id])
       end
-    end
-
-    # Returns a Dmm::Response object
-    #
-    # @param options [Hash]
-    # @return [Dmm::Response]
-    def item_list(options={})
-      res = get('/', params(options))
-      raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
-      Dmm::Response.new(res)
     end
 
     # @return [Hash]
@@ -78,14 +71,6 @@ module Dmm
       }
       options.each_value {|val| val.encode! 'euc-jp' if val.kind_of? String}
       params.merge!(options)
-    end
-
-    def error_message(response)
-      result     = response[:response][:result]
-      message    = result[:message] || "Error"
-      error_name = "\s(#{result[:errors][:error][:name]})"
-      error_val  = result[:errors][:error][:value] || ""
-      "#{message.camelize}: #{error_val.capitalize}#{error_name}"
     end
   end
 end
