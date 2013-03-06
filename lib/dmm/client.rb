@@ -1,9 +1,5 @@
 require 'dmm'
-require 'dmm/response'
-require 'dmm/item'
 require 'dmm/error'
-require 'dmm/core_ext/hash'
-require 'dmm/core_ext/string'
 require 'dmm/api/items'
 require 'faraday'
 require 'faraday_middleware'
@@ -31,7 +27,7 @@ module Dmm
       end
     end
 
-    # @return [Hash]
+    # Perform an HTTP GET request
     def get(path, params={})
       request(:get, path, params)
     end
@@ -42,7 +38,7 @@ module Dmm
       response = connection.send(method.to_sym, path, params) do |request|
         request.url(path, params)
       end
-      Hash.from_xml(response.body)
+      response.body
     end
 
     # Returns a Faraday::Connection object

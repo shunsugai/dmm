@@ -37,7 +37,7 @@ describe Dmm::Client do
 
     share_examples_for '#error_message with wrong api_id' do
       it 'should equal "LoginError: No existing account (login)"' do
-        res = subject.get('/', subject.send(:params))
+        res = Hash.from_xml(subject.get('/', subject.send(:params)))
         subject.send(:error_message, res).should eq 'LoginError: No existing account (login)'
       end
     end
@@ -63,7 +63,7 @@ describe Dmm::Client do
 
       describe '#error_message' do
         it 'should equal "RequestError: Parameter not found (affiliate_id)"' do
-          res = subject.get('/', subject.send(:params))
+          res = Hash.from_xml(subject.get('/', subject.send(:params)))
           subject.send(:error_message, res).should eq 'RequestError: Parameter not found (affiliate_id)'
         end
       end

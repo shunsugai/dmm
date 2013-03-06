@@ -11,7 +11,7 @@ module Dmm
       # @param options [Hash]
       # @return [Dmm::Response]
       def item_list(options={})
-        res = get('/', params(options))
+        res = Hash.from_xml(get('/', params(options)))
         raise Dmm::Error, error_message(res) if res[:response][:result][:errors]
         Dmm::Response.new(res)
       end
