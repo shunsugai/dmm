@@ -28,7 +28,7 @@ module Dmm
       end
     end
 
-    # Returns an Dmm::Response object
+    # Returns a Dmm::Response object
     #
     # @param options [Hash]
     # @return [Dmm::Response]
