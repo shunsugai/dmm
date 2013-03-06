@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'faraday_middleware', '~> 0.8'
   gem.add_dependency 'nokogiri', '~> 1.5.6'
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
 end
