@@ -13,7 +13,6 @@ describe Dmm::Price do
 
     subject { @results.first.prices }
 
-    its(:price)          { should eq '500�' }
     its(:min_price)      { should eq 500 }
     its(:deliveries)     { should eq [{:type=>"stream", :price=>"500"}, {:type=>"download", :price=>"980"}, {:type=>"hd", :price=>"1480"}, {:type=>"androiddl", :price=>"980"}] }
     its(:delivery_types) { should eq ['stream', 'download', 'hd', 'androiddl'] }
