@@ -25,31 +25,15 @@ describe Dmm::Price do
       its(:price_toaster)   { should be_nil }
     end
 
-    if RUBY_VERSION >= '1.9'
-      describe 'respond_to_missing?' do
-        %w(price_stream price_download price_hd price_androiddl).each do |method|
-          it "should be true with argument #{method}" do
-            subject.respond_to_missing?(method.to_sym).should be_true
-          end
-        end
-
-        it 'should be true with non-existent price type' do
-          subject.respond_to_missing?(:price_toaster).should be_true
+    describe 'respond_to?' do
+      %w(price_stream price_download price_hd price_androiddl).each do |method|
+        it "should be true with argument #{method}" do
+          subject.respond_to?(method.to_sym).should be_true
         end
       end
-    end
 
-    if RUBY_VERSION < '1.9'
-      describe 'respond_to?' do
-        %w(price_stream price_download price_hd price_androiddl).each do |method|
-          it "should be true with argument #{method}" do
-            subject.respond_to?(method.to_sym).should be_true
-          end
-        end
-
-        it 'should be true with non-existent price type' do
-          subject.respond_to?(:price_toaster).should be_true
-        end
+      it 'should be true with non-existent price type' do
+        subject.respond_to?(:price_toaster).should be_true
       end
     end
   end

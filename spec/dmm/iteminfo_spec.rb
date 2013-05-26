@@ -18,22 +18,10 @@ describe Dmm::Iteminfo do
       its(:maker)   { should eq '変態紳士倶楽部' }
       its(:label)   { should eq '変態紳士倶楽部' }
 
-      if RUBY_VERSION >= '1.9'
-        describe 'respond_to_missing?' do
-          %w(series maker label keyword actress director author).each do |method|
-            it "should be ture with argument #{method.to_sym}" do
-              subject.respond_to_missing?(method.to_sym).should be_true
-            end
-          end
-        end
-      end
-
-      if RUBY_VERSION < '1.9'
-        describe 'respond_to_missing?' do
-          %w(series maker label keyword actress director author).each do |method|
-            it "should be ture with argument #{method.to_sym}" do
-              subject.respond_to?(method.to_sym).should be_true
-            end
+      describe 'respond_to?' do
+        %w(series maker label keyword actress director author).each do |method|
+          it "should be ture with argument #{method.to_sym}" do
+            subject.respond_to?(method.to_sym).should be_true
           end
         end
       end

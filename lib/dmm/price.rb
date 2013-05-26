@@ -27,7 +27,7 @@ module Dmm
       @delivery_types
     end
 
-    def method_missing(method)
+    def method_missing(method, *args)
       if method.to_s =~ /^price_(\w+)$/
         array = deliveries.select{ |hash| hash[:type] == $1 }
         array.first[:price].to_i unless array.empty?

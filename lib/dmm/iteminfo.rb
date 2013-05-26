@@ -2,7 +2,7 @@ require 'dmm/base'
 
 module Dmm
   class Iteminfo < Dmm::Base
-    def method_missing(method)
+    def method_missing(method, *args)
       if method.to_s =~ /^(series|maker|label)$/
         return nil unless @attrs[method.to_sym]
         @attrs[method.to_sym][:name]
