@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Dmm::Item do
   context 'with valid response' do
-    before do
+    before(:all) do
       request_url = 'http://affiliate-api.dmm.com/?api_id=API_ID&affiliate_id=AFFILIATE_ID&operation=ItemList&version=2.00&timestamp='+Time.now.to_s.gsub(/\s/, '+')+'&site=DMM.co.jp&keyword=%B5%F0%C6%FD'
       stub_request(:get, request_url).to_return(:status => 200, :body => fixture('sample2.xml'))
       client = Dmm.new(:api_id => 'API_ID', :affiliate_id => 'AFFILIATE_ID')
