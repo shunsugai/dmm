@@ -4,16 +4,10 @@ require 'spec_helper'
 describe Dmm::Price do
   context 'with valid response' do
     before(:all) do
-      time = Time.now.to_s.gsub(/\s/, '+')
-      request_url = 'http://affiliate-api.dmm.com/?api_id=API_ID&affiliate_id=AFFILIATE_ID&operation=ItemList&version=2.00&timestamp=' + time + '&site=DMM.co.jp&keyword=%B5%F0%C6%FD'
-      stub_request(:get, request_url).to_return(:status => 200, :body => fixture('sample2.xml'))
-      client = Dmm.new(:api_id => 'API_ID', :affiliate_id => 'AFFILIATE_ID')
-      client.instance_variable_set(:@time, time)
-      response = client.item_list(:keyword => '巨乳')
-      @results = response.items
+      @items = get_sample_items
     end
 
-    subject { @results.first.prices }
+    subject { @items.first.prices }
 
     its(:min_price)      { should eq 500 }
     its(:deliveries)     { should eq [{:type=>"stream", :price=>"500"}, {:type=>"download", :price=>"980"}, {:type=>"hd", :price=>"1480"}, {:type=>"androiddl", :price=>"980"}] }

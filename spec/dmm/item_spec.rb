@@ -4,17 +4,11 @@ require 'spec_helper'
 describe Dmm::Item do
   context 'with valid response' do
     before(:all) do
-      time = Time.now.to_s.gsub(/\s/, '+')
-      request_url = 'http://affiliate-api.dmm.com/?api_id=API_ID&affiliate_id=AFFILIATE_ID&operation=ItemList&version=2.00&timestamp=' + time + '&site=DMM.co.jp&keyword=%B5%F0%C6%FD'
-      stub_request(:get, request_url).to_return(:status => 200, :body => fixture('sample2.xml'))
-      client = Dmm.new(:api_id => 'API_ID', :affiliate_id => 'AFFILIATE_ID')
-      client.instance_variable_set(:@time, time)
-      response = client.item_list(:keyword => '巨乳')
-      @results = response.items
+      @items = get_sample_items
     end
 
     context 'with first item' do
-      subject { @results.first }
+      subject { @items.first }
 
       its(:service_name)     { should eq '動画' }
       its(:floor_name)       { should eq 'ビデオ' }

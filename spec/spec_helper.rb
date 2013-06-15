@@ -7,8 +7,10 @@ end
 require 'bundler/setup'
 require 'dmm'
 require 'webmock/rspec'
+require 'request_helper'
 
 RSpec.configure do |config|
+  config.include RequestHelper
 end
 
 def fixture_path
