@@ -25,6 +25,7 @@ module Dmm
       OPTIONS.each do |id|
         send("#{id}=", options[id])
       end
+      @time = Time.now.to_s
     end
 
     # Perform an HTTP GET request
@@ -62,7 +63,7 @@ module Dmm
         :affiliate_id => @affiliate_id,
         :operation    => 'ItemList',
         :version      => API_VERSION,
-        :timestamp    => Time.now.to_s,
+        :timestamp    => @time,
         :site         => 'DMM.co.jp',
       }
       options.each_value {|val| val.encode! 'euc-jp' if val.kind_of? String}
