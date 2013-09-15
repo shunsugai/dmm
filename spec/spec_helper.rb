@@ -8,6 +8,9 @@ require 'bundler/setup'
 require 'dmm'
 require 'webmock/rspec'
 require 'request_helper'
+require 'coveralls'
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   config.include RequestHelper
