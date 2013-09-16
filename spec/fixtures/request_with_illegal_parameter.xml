@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<response>
+  <request>
+    <parameters>
+      <parameter name="api_id" value="PVRE1xSLqtfvkQebwJ7g" />
+      <parameter name="affiliate_id" value="obmyxnhwutdk-999" />
+      <parameter name="operation" value="ItemList" />
+      <parameter name="version" value="2.00" />
+      <parameter name="timestamp" value="2012-01-13 14:08:16" />
+      <parameter name="site" value="DMM" />
+    </parameters>
+  </request>
+  <result>
+    <message>REQUEST ERROR</message>
+    <errors>
+      <error>
+        <name>site</name>
+        <value>PARAMETER ILLEGAL</value>
+      </error>
+    </errors>
+  </result>
+</response>

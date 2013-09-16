@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<response>
+  <request>
+    <parameters>
+      <parameter name="api_id" value="API_ID" />
+      <parameter name="affiliate_id" value="WRONG_AFFILIATE_ID" />
+      <parameter name="operation" value="ItemList" />
+      <parameter name="version" value="2.00" />
+      <parameter name="timestamp" value="2012-01-13 14:08:16" />
+      <parameter name="site" value="DMM.co.jp" />
+    </parameters>
+  </request>
+  <result>
+    <message>REQUEST ERROR</message>
+    <errors>
+      <error>
+        <name>affiliate_id</name>
+        <value>PARAMETER NOT FOUND</value>
+      </error>
+    </errors>
+  </result>
+</response>

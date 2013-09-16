@@ -64,7 +64,7 @@ module Dmm
         :operation    => 'ItemList',
         :version      => API_VERSION,
         :timestamp    => @time,
-        :site         => 'DMM.co.jp',
+        :site         => Dmm::R18,
       }
       options.each_value {|val| val.encode! 'euc-jp' if val.kind_of? String}
       params.merge!(options)
