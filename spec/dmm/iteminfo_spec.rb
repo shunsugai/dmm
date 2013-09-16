@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Dmm::Iteminfo do
   context 'with valid response' do
     before(:all) do
-      @items = get_sample_items
+      @items = sample_response.items
     end
 
     context 'with first item' do
