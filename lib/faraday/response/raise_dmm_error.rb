@@ -26,6 +26,7 @@ module Faraday
     private
 
     def error_message(response)
+      return 'Response body not exists.' if response[:body].nil?
       message = response[:body]['error']
       return message unless message.empty?
       "#{response[:method].to_s.upcase} #{response[:url].to_s}: #{response[:status]}"
