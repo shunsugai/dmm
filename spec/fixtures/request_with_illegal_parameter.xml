@@ -2,8 +2,8 @@
 <response>
   <request>
     <parameters>
-      <parameter name="api_id" value="PVRE1xSLqtfvkQebwJ7g" />
-      <parameter name="affiliate_id" value="obmyxnhwutdk-999" />
+      <parameter name="api_id" value="API_ID" />
+      <parameter name="affiliate_id" value="WRONG_AFFILIATE_ID" />
       <parameter name="operation" value="ItemList" />
       <parameter name="version" value="2.00" />
       <parameter name="timestamp" value="2012-01-13 14:08:16" />

@@ -9,7 +9,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::BadRequest' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::BadRequest
     end
   end
@@ -21,7 +21,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::Unauthorized' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::Unauthorized
     end
   end
@@ -33,7 +33,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::Forbidden' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::Forbidden
     end
   end
@@ -45,7 +45,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::NotFound' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::NotFound
     end
   end
@@ -57,7 +57,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::NotAcceptable' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::NotAcceptable
     end
   end
@@ -69,7 +69,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::UnprocessableEntity' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::UnprocessableEntity
     end
   end
@@ -93,7 +93,7 @@ describe Dmm::Error do
 
     subject { @client }
 
-    it 'should raise Dmm::InternalServerError' do
+    it 'should raise Dmm::ServiceUnavailable' do
       lambda { subject.item_list(:keyword => '巨乳') }.should raise_error Dmm::ServiceUnavailable
     end
   end
